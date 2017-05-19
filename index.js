@@ -92,10 +92,8 @@ app.get('/', (req, res) => {
     feed.pipe(feedparser)
   })
 
-  // save some data - start with some boilerplate
-  let data = {
-    version : "https://jsonfeed.org/version/1",
-  }
+  // save data as we stumble upon it
+  let data = {}
 
   // now listen to events from the feedparser
   feedparser.on('error', function(err) {
@@ -105,19 +103,86 @@ app.get('/', (req, res) => {
   feedparser.on('meta', function (meta) {
     console.log('===== %s =====', meta.title)
 
-    // title
+    // Going through fields in the same order as : https://jsonfeed.org/version/1
+
+    // version (required, string)
+    data.version = "https://jsonfeed.org/version/1"
+
+    // title (required, string)
     data.title = meta.title
 
-    // description
+    // home_page_url (optional)
+    if ( meta.link ) {
+      data.home_page_url = meta.link
+    }
+
+    // feed_url (optional, string) - is self-referencing, but we don't have anything here to reference since we're generating from either
+    // an RSS or Atom feed.
+
+    // description (optional, string)
     if ( meta.description ) {
       data.description = meta.description
     }
+
+    // user_comment (optional, string) - nothing in RSS or Atom can be used here
+
+    // next_url (optional, string) - nothing in RSS or Atom can be used here
+
+    // icon (optional, string) - nothing in RSS or Atom can be used here
+
+    // favicon (optional, string) - nothing in RSS or Atom can be used here
+
+    // author{name,url,avatar} (optional, must include one if exists)
+    if ( meta.managingEditor ) {
+      data.author = {}
+      data.author.name = meta.managingEditor
+      // ignore avatar
+    }
+
+    // expired (optional, boolean) - nothing in RSS or Atom can be used here
+
+    // hubs (optional, array of objects) - ignoring for now
+
+    // items (array, required) - add this now for appending to later
+    data.items = []
   })
 
   feedparser.on('readable', function() {
     var post
     while ( post = this.read() ) {
       console.log(JSON.stringify(post, ' ', 4))
+
+      let item = {}
+
+      // Going through fields in the same order as : https://jsonfeed.org/version/1
+
+      // id (required, string) - use `guid`
+      if ( post.guid ) {
+        item.guid = post.guid
+      }
+      else {
+        // What should we do if there is no `guid` since `id` is required?
+      }
+
+      // url (optional, string) - the permalink if you like, may be the same as `id`
+      if ( post.link ) {
+        item.url = post.link
+      }
+      else {
+        // What should we do if there is no `link` since we really should have a `url` here?
+      }
+
+      // external_url (optional, string) - ignore since we're adding a `url` anyway
+
+      // title ...
+      if ( post.title ) {
+        item.title = post.title
+      }
+
+      // ToDo: ... !!!
+
+      // finally, push this `item` onto `data.items`
+      data.items.push(item)
     }
   })
 

@@ -1,12 +1,16 @@
 
-test: test-chilts test-scripting
+test-ok: test-ok-chilts test-ok-scripting test-ok-freecodecamp
 
-test-chilts:
+test-ok-chilts:
 	curl --silent http://localhost:3000/?url=http://chilts.org/rss.xml | json_pp
 	echo
 
-test-scripting:
+test-ok-scripting:
 	curl --silent http://localhost:3000/?url=http://scripting.com/rss.xml | json_pp
+	echo
+
+test-ok-freecodecamp:
+	curl --silent http://localhost:3000/?url=https://medium.freecodecamp.com/feed | json_pp
 	echo
 
 test-not-found:
