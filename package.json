@@ -5,6 +5,9 @@
   "engines" : {
     "node" : "6.x.x"
   },
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "express": "^4.15.3",
     "feedparser": "^2.2.0",
