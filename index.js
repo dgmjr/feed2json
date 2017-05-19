@@ -41,15 +41,19 @@ function getParams(str) {
 var app = express()
 
 app.get('/', (req, res) => {
-  let url = req.query.url
-  console.log('url=' + url)
+  let queryUrl = req.query.url
+  console.log('url=' + queryUrl)
 
-  if ( !url ) {
+  if ( !queryUrl ) {
     return sendError(res, 400, "provide a 'url' parameter in your query")
   }
 
   // check if this looks like a valid URL
-  url = validUrl.isWebUri(url)
+  let url = validUrl.isWebUri(queryUrl)
+  if ( !url ) {
+    return sendError(res, 400, "invalid 'url' : " + queryUrl)
+  }
+
   console.log('url=' + url)
 
   // create the feedparser ready for when we get the request back
