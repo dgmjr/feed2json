@@ -92,8 +92,10 @@ app.get('/', (req, res) => {
     feed.pipe(feedparser)
   })
 
-  // save some data
-  let data = {}
+  // save some data - start with some boilerplate
+  let data = {
+    version : "https://jsonfeed.org/version/1",
+  }
 
   // now listen to events from the feedparser
   feedparser.on('error', function(err) {
@@ -102,7 +104,14 @@ app.get('/', (req, res) => {
 
   feedparser.on('meta', function (meta) {
     console.log('===== %s =====', meta.title)
+
+    // title
     data.title = meta.title
+
+    // description
+    if ( meta.description ) {
+      data.description = meta.description
+    }
   })
 
   feedparser.on('readable', function() {
