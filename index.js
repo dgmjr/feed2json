@@ -44,13 +44,17 @@ app.get('/', (req, res) => {
   let queryUrl = req.query.url
   console.log('url=' + queryUrl)
 
+  let responseSent = false
+
   if ( !queryUrl ) {
+    responseSent = true
     return sendError(res, 400, "provide a 'url' parameter in your query")
   }
 
   // check if this looks like a valid URL
   let url = validUrl.isWebUri(queryUrl)
   if ( !url ) {
+    responseSent = true
     return sendError(res, 400, "invalid 'url' : " + queryUrl)
   }
 
@@ -71,11 +75,13 @@ app.get('/', (req, res) => {
 
   // check for request errors
   fetch.on('error', function (err) {
+    responseSent = true
     return sendError(res, 500, "error when requesting the feed : " + err)
   })
 
   // Process the response when we get something back.
   fetch.on('response', function(feed) {
+    console.log('request.response')
     if ( feed.statusCode != 200 ) {
       return this.emit('error', new Error('Bad status code'))
     }
@@ -97,11 +103,13 @@ app.get('/', (req, res) => {
 
   // now listen to events from the feedparser
   feedparser.on('error', function(err) {
+    console.log('feedparser error :', err)
+    responseSent = true
     return sendError(res, 500, "error parsing feed : " + err)
   })
 
   feedparser.on('meta', function (meta) {
-    console.log('===== %s =====', meta.title)
+    console.log('meta.link:', meta.link)
 
     // Going through fields in the same order as : https://jsonfeed.org/version/1
 
@@ -147,47 +155,52 @@ app.get('/', (req, res) => {
     data.items = []
   })
 
-  feedparser.on('readable', function() {
-    var post
-    while ( post = this.read() ) {
-      console.log(JSON.stringify(post, ' ', 4))
+  feedparser.on('data', function (post) {
+    console.log(' * feedparser.data = ' + post.guid)
 
-      let item = {}
+    let item = {}
 
-      // Going through fields in the same order as : https://jsonfeed.org/version/1
+    // Going through fields in the same order as : https://jsonfeed.org/version/1
 
-      // id (required, string) - use `guid`
-      if ( post.guid ) {
-        item.guid = post.guid
-      }
-      else {
-        // What should we do if there is no `guid` since `id` is required?
-      }
-
-      // url (optional, string) - the permalink if you like, may be the same as `id`
-      if ( post.link ) {
-        item.url = post.link
-      }
-      else {
-        // What should we do if there is no `link` since we really should have a `url` here?
-      }
-
-      // external_url (optional, string) - ignore since we're adding a `url` anyway
-
-      // title ...
-      if ( post.title ) {
-        item.title = post.title
-      }
-
-      // ToDo: ... !!!
-
-      // finally, push this `item` onto `data.items`
-      data.items.push(item)
+    // id (required, string) - use `guid`
+    if ( post.guid ) {
+      item.guid = post.guid
     }
+    else {
+      // What should we do if there is no `guid` since `id` is required?
+    }
+
+    // url (optional, string) - the permalink if you like, may be the same as `id`
+    if ( post.link ) {
+      item.url = post.link
+    }
+    else {
+      // What should we do if there is no `link` since we really should have a `url` here?
+    }
+
+    // external_url (optional, string) - ignore since we're adding a `url` anyway
+
+    // title ...
+    if ( post.title ) {
+      item.title = post.title
+    }
+
+    // ToDo: ... !!!
+
+    // finally, push this `item` onto `data.items`
+    data.items.push(item)
   })
 
   // and finish the request
   feedparser.on('end', function() {
+    console.log('feedparser.end')
+
+    // don't do anything if we have already errored out and sent a response
+    if ( responseSent ) {
+      return
+    }
+
+    // alright to send the data
     res.json(data)
   })
 })

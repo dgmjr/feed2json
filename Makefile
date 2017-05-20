@@ -13,6 +13,10 @@ test-ok-freecodecamp:
 	curl --silent http://localhost:3000/?url=https://medium.freecodecamp.com/feed | json_pp
 	echo
 
+test-invalid-feed:
+	curl --silent http://localhost:3000/?url=https://google.com/ | json_pp
+	echo
+
 test-not-found:
 	curl --silent http://localhost:3000/?url=http://chilts.org/feed.xml | json_pp
 
