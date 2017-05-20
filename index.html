@@ -9,6 +9,27 @@
 
   <body>
 
+    <h1>feed2json</h1>
+
+    <p>
+      This feed2json is a RSS/Atom feed to `JSONFeed` (<a href="https://jsonfeed.org/">jsonfeed.org</a>) converter.
+      It is open source and lives at <a href="https://github.com/appsattic/feed2json">appsattic/feed2json</a>. It uses
+      the <a href="https://www.npmjs.com/package/feedparser">feedparser</a> library to do the initial parsing.
+    </p>
+
+    <p>
+      Various bits of coding could be better and a library should be extracted, but until a few people have used it, perhaps
+      sent in a patch or pull request to make the conversion better, I'll leave it for the moment. This will happen when
+      we have a battle-tested library. Also, when I figure out charsets and using <em>iconv</em>.
+    </p>
+
+    <h2>Conversion</h2>
+
+    <p>
+      Note: this installation is currently usable by the public. Depending on how it goes, I may end up either making
+      it private and you can install your own version, or moving it to different hosting.
+    </p>
+
     <p>
       To convert a RSS/Atom feed into JSON, use the <code>/convert</code> endpoint and pass it a <code>url</code>
       parameter. Here are some examples which each open in a new window:
