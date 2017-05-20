@@ -138,7 +138,10 @@ app.get('/', (req, res) => {
 
     // icon (optional, string) - nothing in RSS or Atom can be used here
 
-    // favicon (optional, string) - nothing in RSS or Atom can be used here
+    // favicon (optional, string) - Atom might have this
+    if ( meta.favicon ) {
+      data.favicon = meta.favicon
+    }
 
     // author{name,url,avatar} (optional, must include one if exists)
     if ( meta.managingEditor ) {
