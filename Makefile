@@ -13,6 +13,9 @@ test-ok-freecodecamp:
 	curl --silent http://localhost:3000/?url=https://medium.freecodecamp.com/feed | json_pp
 	echo
 
+test-ok-intertwingly-atom:
+	curl --silent http://localhost:3000/?url=http://www.intertwingly.net/blog/index.atom | json_pp
+
 test-invalid-feed:
 	curl --silent http://localhost:3000/?url=https://google.com/ | json_pp
 	echo

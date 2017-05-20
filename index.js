@@ -42,7 +42,7 @@ var app = express()
 
 app.get('/', (req, res) => {
   let queryUrl = req.query.url
-  console.log('url=' + queryUrl)
+  console.log('queryUrl=' + queryUrl)
 
   let responseSent = false
 
@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
     return sendError(res, 400, "invalid 'url' : " + queryUrl)
   }
 
-  console.log('url=' + url)
+  console.log('validUrl=' + url)
 
   // create the feedparser ready for when we get the request back
   var feedparser = new FeedParser({
@@ -110,6 +110,7 @@ app.get('/', (req, res) => {
 
   feedparser.on('meta', function (meta) {
     console.log('meta.link:', meta.link)
+    // console.log(meta)
 
     // Going through fields in the same order as : https://jsonfeed.org/version/1
 
@@ -144,10 +145,11 @@ app.get('/', (req, res) => {
     }
 
     // author{name,url,avatar} (optional, must include one if exists)
-    if ( meta.managingEditor ) {
-      data.author = {}
-      data.author.name = meta.managingEditor
-      // ignore avatar
+    if ( meta.author ) {
+      // even in Atom feeds with Author Name, Email and URI, feedparser only gives `meta.author`
+      data.author = {
+        name : meta.author,
+      }
     }
 
     // expired (optional, boolean) - nothing in RSS or Atom can be used here
@@ -159,7 +161,8 @@ app.get('/', (req, res) => {
   })
 
   feedparser.on('data', function (post) {
-    console.log(' * feedparser.data = ' + post.guid)
+    // console.log('feedparser.data')
+    console.log(' - post = ' + post.guid)
 
     let item = {}
 
