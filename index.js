@@ -112,7 +112,7 @@ app.get('/convert', (req, res) => {
     return sendError(res, 500, "error parsing feed : " + err)
   })
 
-  feedparser.on('meta', function (meta) {
+  feedparser.on('meta', function(meta) {
     console.log('meta.link:', meta.link)
     // console.log(meta)
 
@@ -164,7 +164,7 @@ app.get('/convert', (req, res) => {
     data.items = []
   })
 
-  feedparser.on('data', function (post) {
+  feedparser.on('data', function(post) {
     // console.log('feedparser.data')
     console.log(' - post = ' + post.guid)
 
@@ -190,12 +190,48 @@ app.get('/convert', (req, res) => {
 
     // external_url (optional, string) - ignore since we're adding a `url` anyway
 
-    // title ...
+    // title (optional, string)
     if ( post.title ) {
       item.title = post.title
     }
 
-    // ToDo: ... !!!
+    // content_html/content_text (optional, string) - one must be present
+    if ( post.description ) {
+      item.content_html = post.description
+    }
+
+    // summary (optional, string)
+    if ( post.summary ) {
+      item.summary = post.summary
+    }
+
+    // image (optional, string)
+    if ( post.image ) {
+      if ( post.image.constructor === Object ) {
+        // skip for now
+      }
+      else {
+        item.image = post.image
+      }
+    }
+
+    // banner_image (optional, string) - ???
+
+    // date_published (optional, string)
+    if ( post.pubDate ) {
+      item.date_published = post.pubDate
+    }
+
+    // date_modified (optional, string) - ???
+
+    // author (optional, object)
+    if ( post.author ) {
+      item.author = {
+        name : post.author,
+      }
+    }
+
+    // tags (optional, string[])
 
     // finally, push this `item` onto `data.items`
     data.items.push(item)
