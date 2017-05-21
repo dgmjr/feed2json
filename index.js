@@ -13,6 +13,8 @@ const FeedParser = require('feedparser')
 // --------------------------------------------------------------------------------------------------------------------
 // helpers
 
+const files = path.join(__dirname, 'static')
+
 function sendError(res, status, err) {
   res.status(status).json({
     "err" : '' + err,
@@ -42,7 +44,11 @@ function getParams(str) {
 var app = express()
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'static', 'index.html'))
+  res.sendFile(path.join(files, 'index.html'))
+})
+
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(path.join(files, 'favicon.ico'))
 })
 
 app.get('/convert', (req, res) => {
