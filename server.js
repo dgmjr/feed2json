@@ -6,6 +6,7 @@ const path = require('path')
 
 // npm
 const express = require('express')
+const morgan = require('morgan')
 const request = require('request')
 const validUrl = require('valid-url')
 const FeedParser = require('feedparser')
@@ -42,6 +43,8 @@ function getParams(str) {
 // application
 
 var app = express()
+
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'tiny' : 'dev'))
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(files, 'index.html'))
