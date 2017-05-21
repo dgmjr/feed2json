@@ -6,7 +6,7 @@
     "node" : "6.x.x"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.15.3",
