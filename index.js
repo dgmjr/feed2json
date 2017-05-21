@@ -2,6 +2,7 @@
 
 // core
 const http = require('http')
+const path = require('path')
 
 // npm
 const express = require('express')
@@ -41,7 +42,7 @@ function getParams(str) {
 var app = express()
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html')
+  res.sendFile(path.join(__dirname, 'static', 'index.html'))
 })
 
 app.get('/convert', (req, res) => {
