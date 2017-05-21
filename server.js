@@ -22,21 +22,13 @@ function sendError(res, status, err) {
   })
 }
 
-// From : https://github.com/danmactough/node-feedparser/blob/master/examples/iconv.js
-function getParams(str) {
-  var params = str.split(';').reduce((params, param) => {
-    var parts = param.split('=').map((part) => {
-      return part.trim()
-    })
-
-    if ( parts.length === 2 ) {
-      params[parts[0]] = parts[1]
-    }
-
-    return params
+// From : https://github.com/danmactough/node-feedparser/blob/master/examples/iconv.js (with changes)
+function getHeaderParams(header) {
+  return ( header || '' ).split(';').reduce((acc, val) => {
+    var kv = val.split('=')
+    acc[kv[0].trim()] = ( kv[1] || '' ).trim()
+    return acc
   }, {})
-
-  return params
 }
 
 // --------------------------------------------------------------------------------------------------------------------
@@ -100,13 +92,13 @@ app.get('/convert', (req, res) => {
       return this.emit('error', new Error('Bad status code'))
     }
 
-    // See if this is a weird charset - perhaps ignore any we don't know!
+    // See if this is a weird charset:
     //
     // * https://github.com/danmactough/node-feedparser/blob/master/examples/iconv.js
     //
-    var charset = getParams(feed.headers['content-type'] || '').charset
-    console.log('charset=' + charset)
-    // feed = maybeTranslate(feed, charset)
+    let headerParams = getHeaderParams(feed.headers['content-type'])
+    console.log('headerParams:', headerParams)
+    // feed = maybeTranslate(feed, headerParams.charset)
 
     // finally, pipe into the feedparser
     feed.pipe(feedparser)
