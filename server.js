@@ -37,14 +37,7 @@ function getHeaderParams(header) {
 var app = express()
 
 app.use(morgan(process.env.NODE_ENV === 'production' ? 'tiny' : 'dev'))
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(files, 'index.html'))
-})
-
-app.get('/favicon.ico', (req, res) => {
-  res.sendFile(path.join(files, 'favicon.ico'))
-})
+app.use(express.static('static'))
 
 app.get('/convert', (req, res) => {
   let queryUrl = req.query.url

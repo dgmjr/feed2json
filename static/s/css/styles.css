@@ -1,0 +1,111 @@
+/* setup */
+
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+
+/* general */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.5;
+    color: #566b78;
+}
+
+main {
+    padding: 4em 1em;
+    margin: 0 auto;
+    max-width: 50em;
+}
+
+footer {
+    padding: 2em 1em;
+    margin: 0 auto;
+    max-width: 50em;
+    border-top: 1px solid gray;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1em;
+    padding-top: 1em;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  color: #333;
+}
+
+code, pre {
+    background: #eee;
+}
+
+code {
+    padding: 2px 4px;
+    vertical-align: text-bottom;
+    background: #f5f7f9;
+    border-bottom: 1px solid #d8dee9;
+    color: #a7adba;
+}
+
+pre {
+    padding: 1em;
+  border-left: 2px solid #69c;
+}
+
+a {
+  color: #e81c4f;
+}
+
+/* specific elements */
+
+header {
+    background-color: #263d36;
+    background-image: url("/s/img/bg-m.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    line-height: 1.2;
+    padding: 5vw 2em;
+    text-align: center;
+}
+
+header img {
+    display: inline-block;
+    height: 140px;
+    vertical-align: top;
+    width: 420px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    font-weight: 300;
+}
+
+header h1, header h2 {
+    color: white;
+    margin: 0;
+}
+
+header p {
+    color: white;
+}
+
+header a {
+    border: 2px solid #e81c4f;
+    border-radius: 290486px;
+    color: white;
+    font-size: 0.6em;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    padding: 1em 2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: none 200ms ease-out;
+    transition-property: color, background;
+}
+
+header a:hover {
+    background:  #e81c4f;
+    color: white;
+}
+
+/* end */

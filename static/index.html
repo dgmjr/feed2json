@@ -4,105 +4,130 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>feed2json.org</title>
+    <link href="/favicon.ico" rel="icon">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@andychilton">
+    <meta name="twitter:creator" content="@andychilton">
+    <meta name="twitter:title" content="Feed 2 JSON">
+    <meta name="twitter:description" content="Create a JSONFeed from your old RSS/Atom feeds.">
+    <!-- <meta name="twitter:image" content="http://jgthms.com/web-design-in-4-minutes/learn-web-design-in-4-minutes.png"> -->
+    <link rel="stylesheet" type="text/css" href="/s/css/styles.css">
   </head>
 
   <body>
 
-    <div style="width: 960px; margin: 50px auto;">
+    <header id="header">
+      <img id="logo" src="/s/i/logo.png" alt="RSS/Atom to JSONFeed Converter">
+      <h1>feed2json.org</h1>
+      <h2>RSS/Atom to JSONFeed Converter</h2>
+      <p>
+        by
+        <a href="https://chilts.org/" target="_blank">Andrew Chilton</a>
+        for
+        <a href="https://appsattic.com/" target="_blank">AppsAttic</a>
+      </p>
+    </header>
 
-    <h1>feed2json.org</h1>
+    <main>
 
-    <p>
-      This site is a RSS/Atom feed to `JSONFeed` (<a href="https://jsonfeed.org/">jsonfeed.org</a>) converter.  It is
-      open source and lives at <a href="https://github.com/appsattic/feed2json.org">appsattic/feed2json.org</a>. It uses
-      the <a href="https://www.npmjs.com/package/feedparser">feedparser</a> library to do the initial parsing.
-    </p>
+      <h1>feed2json.org</h1>
 
-    <p>
-      Various bits of coding could be better and a library should be extracted, but until a few people have used it,
-      perhaps sent in a patch or pull request to make the conversion better, I'll leave it for the moment. This will
-      happen when we have a battle-tested library. Also, when I figure out charsets and using <em>iconv</em>.  (Note:
-      it will probably live at https://www.npmjs.com/package/feed2json though there is nothing there yet.)
-    </p>
+      <p>
+        This site is a RSS/Atom feed to `JSONFeed` (<a href="https://jsonfeed.org/">jsonfeed.org</a>) converter.  It is
+        open source and lives at <a href="https://github.com/appsattic/feed2json.org">appsattic/feed2json.org</a>. It
+        uses the <a href="https://www.npmjs.com/package/feedparser">feedparser</a> library to do the initial parsing.
+      </p>
 
-    <h2>Conversion</h2>
+      <p>
+        Various bits of coding could be better and a library should be extracted, but until a few people have used it,
+        perhaps sent in a patch or pull request to make the conversion better, I'll leave it for the moment. This will
+        happen when we have a battle-tested library. Also, when I figure out charsets and using <em>iconv</em>.  (Note:
+        it will probably live at https://www.npmjs.com/package/feed2json though there is nothing there yet.)
+      </p>
 
-    <p>
-      Note: this installation is currently usable by the public. Depending on how it goes, I may end up either making
-      it private and you can install your own version, or moving it to different hosting. Please don't abuse this. If
-      you'd like to use this application in a commercial project, please contact me.
-    </p>
+      <h2>Conversion</h2>
 
-    <p>
-      To convert a RSS/Atom feed into JSON, use the <code>/convert</code> endpoint and pass it a <code>url</code>
-      parameter. Here are some examples which each open in a new window:
-    </p>
+      <p>
+        Note: this installation is currently usable by the public. Depending on how it goes, I may end up either making
+        it private and you can install your own version, or moving it to different hosting. Please don't abuse this. If
+        you'd like to use this application in a commercial project, please contact me.
+      </p>
 
-    <ul>
-      <li>
-        <a href="/convert?url=https://chilts.org/rss.xml" target="_blank">Andrew Chilton</a>
-        -
-        <code>https://feed2json.org/convert?url=https://chilts.org/rss.xml</code>
-        -
-        RSS
-      </li>
-      <li>
-        <a href="/convert?url=http://scripting.com/rss.xml" target="_blank">Scripting News</a>
-        -
-        <code>https://feed2json.org/convert?url=http://scripting.com/rss.xml</code>
-        -
-        RSS
-      </li>
-      <li>
-        <a href="/convert?url=https://jsonfeed.org/xml/rss.xml" target="_blank">JSON Feed Website</a>
-        -
-        <code>https://feed2json.org/convert?url=https://jsonfeed.org/xml/rss.xml</code>
-        -
-        RSS
-      </li>
-      <li>
-        <a href="/convert?url=http://www.intertwingly.net/blog/index.atom" target="_blank">Sam Ruby</a>
-        -
-        <code>https://feed2json.org/convert?url=http://www.intertwingly.net/blog/index.atom</code>
-        -
-        Atom
-      </li>
-    </ul>
+      <p>
+        To convert a RSS/Atom feed into JSON, use the <code>/convert</code> endpoint and pass it a <code>url</code>
+        parameter. Here are some examples which each open in a new window:
+      </p>
 
-    <h2>Visualisation</h2>
+      <ul>
+        <li>
+          <a href="/convert?url=https://chilts.org/rss.xml" target="_blank">Andrew Chilton</a>
+          -
+          <code>https://feed2json.org/convert?url=https://chilts.org/rss.xml</code>
+          -
+          RSS
+        </li>
+        <li>
+          <a href="/convert?url=http://scripting.com/rss.xml" target="_blank">Scripting News</a>
+          -
+          <code>https://feed2json.org/convert?url=http://scripting.com/rss.xml</code>
+          -
+          RSS
+        </li>
+        <li>
+          <a href="/convert?url=https://jsonfeed.org/xml/rss.xml" target="_blank">JSON Feed Website</a>
+          -
+          <code>https://feed2json.org/convert?url=https://jsonfeed.org/xml/rss.xml</code>
+          -
+          RSS
+        </li>
+        <li>
+          <a href="/convert?url=http://www.intertwingly.net/blog/index.atom" target="_blank">Sam Ruby</a>
+          -
+          <code>https://feed2json.org/convert?url=http://www.intertwingly.net/blog/index.atom</code>
+          -
+          Atom
+        </li>
+      </ul>
 
-    <p>
-      Maxime Vaillancourt <a href="https://twitter.com/vaillancourtmax">Twitter/@vaillancourtmax</a> has produced an
-      awesome tool to help you view the contents of your JSON Feeds. This can be used in conjuction with feed2json to
-      view older RSS/Atom feeds too using the automatic conversion. Here is an example. Note: you have to escape
-      the <code>feed_url</code> properly so that feed2json.org can work correctly.
-    </p>
+      <h2>Visualisation</h2>
 
-    <ul>
-      <li>
-        <a href="https://json-feed-viewer.herokuapp.com/?feed_url=https%3A%2F%2Ffeed2json.now.sh%2Fconvert%3Furl%3Dhttps%3A%2F%2Fchilts.org%2Frss.xml">https://json-feed-viewer.herokuapp.com/?feed_url=https%3A%2F%2Ffeed2json.now.sh%2Fconvert%3Furl%3Dhttps%3A%2F%2Fchilts.org%2Frss.xml</a>
-      </li>
-    </ul>
+      <p>
+        Maxime Vaillancourt <a href="https://twitter.com/vaillancourtmax">Twitter/@vaillancourtmax</a> has produced an
+        awesome tool to help you view the contents of your JSON Feeds. This can be used in conjuction with feed2json to
+        view older RSS/Atom feeds too using the automatic conversion. Here is an example. Note: you have to escape
+        the <code>feed_url</code> properly so that feed2json.org can work correctly.
+      </p>
 
-    <h2>Author</h2>
+      <ul>
+        <li>
+          <a href="https://json-feed-viewer.herokuapp.com/?feed_url=https%3A%2F%2Ffeed2json.now.sh%2Fconvert%3Furl%3Dhttps%3A%2F%2Fchilts.org%2Frss.xml">https://json-feed-viewer.herokuapp.com/?feed_url=https%3A%2F%2Ffeed2json.now.sh%2Fconvert%3Furl%3Dhttps%3A%2F%2Fchilts.org%2Frss.xml</a>
+        </li>
+      </ul>
 
-    <p>Written by Andrew Chilton for AppsAttic. Feel free to contact us in any way.</p>
+      <h2>Author</h2>
 
-    <dl>
-      <dt>Andrew Chilton:</dt>
-      <dd><a href="https://chilts.org/">WebSite/chilts.org</a></dd>
-      <dd><a href="https://twitter.com/andychilton">Twitter/@andychilton</a></dd>
-      <dd><a href="https://github.com/chilts/">GitHub/chilts</a></dd>
-      <dt>AppsAttic:</dt>
-      <dd><a href="https://appsattic.com/">WebSite/appsattic.com</a></dd>
-      <dd><a href="https://twitter.com/AppsAttic">Twitter/@AppsAttic</a></dd>
-      <dd><a href="https://github.com/appsattic/">GitHub/appsattic</a></dd>
-    </dl>
+      <p>Written by Andrew Chilton for AppsAttic. Feel free to contact us in any way.</p>
 
-    <p>(Ends)</p>
+      <dl>
+        <dt>Andrew Chilton:</dt>
+        <dd><a href="https://chilts.org/">WebSite/chilts.org</a></dd>
+        <dd><a href="https://twitter.com/andychilton">Twitter/@andychilton</a></dd>
+        <dd><a href="https://github.com/chilts/">GitHub/chilts</a></dd>
+        <dt>AppsAttic:</dt>
+        <dd><a href="https://appsattic.com/">WebSite/appsattic.com</a></dd>
+        <dd><a href="https://twitter.com/AppsAttic">Twitter/@AppsAttic</a></dd>
+        <dd><a href="https://github.com/appsattic/">GitHub/appsattic</a></dd>
+      </dl>
 
-    </div>
+      <p>(Ends)</p>
+
+    </main>
+
+    <footer>
+      <p>Background image : <a href="https://www.pexels.com/photo/calm-dawn-grass-grassland-266816/">Pexels</a>.
+    </footer>
 
   </body>
 </html>
