@@ -108,4 +108,45 @@ header a:hover {
     color: white;
 }
 
+/* forms */
+
+form {
+  margin: 0 auto;
+  /* width: 400px; */
+  padding: 1em;
+  /* border: 1px solid #CCC; */
+}
+
+label {
+  display: block;
+  float: left;
+  width: 100px;
+  text-align: right;
+}
+
+input, textarea, select, button {
+  margin: 0;
+  -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+          box-sizing: border-box;
+}
+
+input, textarea {
+    margin-left: 120px;
+    display: block;
+}
+
+input[type=text] {
+    width: 400px;
+}
+
+form div {
+    padding: 8px 0;
+}
+
+form div.button button {
+    margin-left: 120px;
+    display: block;
+}
+
 /* end */

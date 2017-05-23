@@ -32,6 +32,22 @@
 
     <main>
 
+      <h2>Convert RSS/Atom feed to JSONFeed</h2>
+      <form action="/convert" method="get">
+        <div>
+          <label for="name">URL</label>
+          <input type="text" id="url" name="url">
+        </div>
+        <div>
+          <label for="minify">Minify</label>
+          <input type="checkbox" id="minify" name="minify">
+        </div>
+        <div class="button">
+          <label></label>
+          <button type="submit">Convert</button>
+        </div>
+      </form>
+
       <h1>feed2json.org</h1>
 
       <p>
