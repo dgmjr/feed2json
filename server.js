@@ -11,6 +11,9 @@ const request = require('request')
 const validUrl = require('valid-url')
 const FeedParser = require('feedparser')
 
+// local
+const booleanify = require('./lib/booleanify.js')
+
 // --------------------------------------------------------------------------------------------------------------------
 // helpers
 
@@ -41,7 +44,10 @@ app.use(express.static('static'))
 
 app.get('/convert', (req, res) => {
   let queryUrl = req.query.url
+  let minify = booleanify(req.query.minify)
+
   console.log('queryUrl=' + queryUrl)
+  console.log('minify=' + minify)
 
   let responseSent = false
 
@@ -242,7 +248,14 @@ app.get('/convert', (req, res) => {
     }
 
     // alright to send the data
-    res.json(data)
+    if ( minify ) {
+      res.json(data)
+    }
+    else {
+      res.set({'Content-Type': 'application/json; charset=utf-8'})
+      res.status(200)
+      res.send(JSON.stringify(data, undefined, '  '))
+    }
   })
 })
 
