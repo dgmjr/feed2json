@@ -12,7 +12,7 @@ const morgan = require('morgan')
 const request = require('request')
 const validUrl = require('valid-url')
 const FeedParser = require('feedparser')
-// const redis = require("redis")
+const helmet = require('helmet')
 
 // local
 const booleanify = require('./lib/booleanify.js')
@@ -61,6 +61,7 @@ function sendJson(res, minify, data) {
 
 var app = express()
 
+app.use(helmet())
 app.use(morgan(process.env.NODE_ENV === 'production' ? 'tiny' : 'dev'))
 app.use(express.static('static'))
 
