@@ -5,7 +5,7 @@ test-index:
 test-ok: test-ok-chilts test-ok-scripting test-ok-freecodecamp
 
 test-ok-chilts-rss-minify:
-	curl --silent 'http://localhost:3000/convert?url=http://chilts.org/rss.xml' | json_pp
+	curl --silent 'http://localhost:3000/convert?url=http://chilts.org/rss.xml&minify=t' | json_pp
 	echo
 
 test-ok-chilts-rss-pretty:
