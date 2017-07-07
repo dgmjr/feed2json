@@ -53,14 +53,13 @@
       <p>
         This site is a RSS/Atom feed to `JSONFeed` (<a href="https://jsonfeed.org/">jsonfeed.org</a>) converter.  It is
         open source and lives at <a href="https://github.com/appsattic/feed2json.org">appsattic/feed2json.org</a>. It
-        uses the <a href="https://www.npmjs.com/package/feedparser">feedparser</a> library to do the initial parsing.
+        uses the <a href="https://www.npmjs.com/package/feed2json">feed2json</a> which in turn uses the
+        excellent <a href="https://www.npmjs.com/package/feedparser">feedparser</a> library to do the parsing itself.
       </p>
 
       <p>
-        Various bits of coding could be better and a library should be extracted, but until a few people have used it,
-        perhaps sent in a patch or pull request to make the conversion better, I'll leave it for the moment. This will
-        happen when we have a battle-tested library. Also, when I figure out charsets and using <em>iconv</em>.  (Note:
-        it will probably live at https://www.npmjs.com/package/feed2json though there is nothing there yet.)
+        The source code for [feed2json lives on GitHub](https://github.com/chilts/feed2json) so please use and send me
+        any patches or pull requests to improve the quality of the conversion.
       </p>
 
       <h2>Conversion</h2>
@@ -118,7 +117,7 @@
 
       <ul>
         <li>
-          <a href="https://json-feed-viewer.herokuapp.com/?feed_url=https%3A%2F%2Ffeed2json.now.sh%2Fconvert%3Furl%3Dhttps%3A%2F%2Fchilts.org%2Frss.xml">https://json-feed-viewer.herokuapp.com/?feed_url=https%3A%2F%2Ffeed2json.now.sh%2Fconvert%3Furl%3Dhttps%3A%2F%2Fchilts.org%2Frss.xml</a>
+          <a href="https://json-feed-viewer.herokuapp.com/?feed_url=https%3A%2F%2Ffeed2json.org%2Fconvert%3Furl%3Dhttps%3A%2F%2Fchilts.org%2Frss.xml">https://json-feed-viewer.herokuapp.com/?feed_url=https%3A%2F%2Ffeed2json.org%2Fconvert%3Furl%3Dhttps%3A%2F%2Fchilts.org%2Frss.xml</a>
         </li>
       </ul>
 

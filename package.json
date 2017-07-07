@@ -1,5 +1,5 @@
 {
-  "name": "feed2json",
+  "name": "feed2json.org",
   "description": "Takes a Feed URL (RSS or Atom) and returns a JSONFeed.",
   "version": "0.1.0",
   "engines": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "express": "^4.15.3",
+    "feed2json": "^0.4.0",
     "feedparser": "^2.2.0",
     "morgan": "^1.8.1",
     "request": "^2.81.0",
