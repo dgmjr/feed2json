@@ -3,22 +3,19 @@
   "description": "Takes a Feed URL (RSS or Atom) and returns a JSONFeed.",
   "version": "0.1.0",
   "engines": {
-    "node": "6.x.x"
+    "node": "12.x.x"
   },
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.15.3",
+    "express": "^4.17.1",
     "feed2json": "^0.4.0",
     "feedparser": "^2.2.0",
-    "morgan": "^1.8.1",
-    "request": "^2.81.0",
+    "morgan": "^1.10.0",
+    "npm": "^6.14.5",
+    "request": "^2.88.2",
     "valid-url": "^1.0.9"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/appsattic/feed2json.git"
   },
   "author": {
     "name": "Andrew Chilton",
